@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0aqstysxgj3x"]
+
+[ext_resource type="Script" path="res://scenes/level.gd" id="1_kfkqp"]
+[ext_resource type="PackedScene" uid="uid://c2ofakdfkwnaa" path="res://scenes/emote.tscn" id="1_u7x5i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dvehs"]
+size = Vector2(969, 20)
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_kfkqp")
+
+[node name="Emote" parent="." instance=ExtResource("1_u7x5i")]
+position = Vector2(268, 89)
+
+[node name="Emote2" parent="." instance=ExtResource("1_u7x5i")]
+position = Vector2(427, 92)
+type = 1
+
+[node name="Emote3" parent="." instance=ExtResource("1_u7x5i")]
+position = Vector2(579, 97)
+type = 9
+
+[node name="Emote4" parent="." instance=ExtResource("1_u7x5i")]
+position = Vector2(643, 213)
+type = 10
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(556, 607)
+shape = SubResource("RectangleShape2D_dvehs")

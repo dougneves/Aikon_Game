@@ -1,3 +1,235 @@
-[gd_scene format=3 uid="uid://d0aqstysxgj3x"]
+[gd_scene load_steps=10 format=3 uid="uid://d0aqstysxgj3x"]
+
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_kfkqp"]
+[ext_resource type="PackedScene" uid="uid://cieuq0jympjo3" path="res://scenes/emote_sprite.tscn" id="2_6qm2u"]
+[ext_resource type="AudioStream" uid="uid://n41bvm1dovdi" path="res://audio/join2.wav" id="3_1176a"]
+[ext_resource type="AudioStream" uid="uid://c4innrm2ssqsm" path="res://audio/wasted.mp3" id="4_yans0"]
+[ext_resource type="Texture2D" uid="uid://c7k56dtltxlh" path="res://img/wasted.png" id="5_j4yfk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dvehs"]
+size = Vector2(582.75, 22)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6beg5"]
+size = Vector2(20, 693)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vy5n2"]
+size = Vector2(22.5, 694.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e5j6o"]
+size = Vector2(585, 20)
 
 [node name="Level" type="Node2D"]
+script = ExtResource("1_kfkqp")
+
+[node name="GameTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = 612.0
+offset_top = 161.0
+offset_right = 665.0
+offset_bottom = 184.0
+text = "N E X T"
+
+[node name="NextEmote" parent="." instance=ExtResource("2_6qm2u")]
+position = Vector2(641, 235)
+
+[node name="PlayerActionButtons" type="HBoxContainer" parent="."]
+z_index = 999
+offset_left = 43.0
+offset_top = 5.0
+offset_right = 587.0
+offset_bottom = 111.0
+size_flags_horizontal = 3
+
+[node name="Button1" type="Button" parent="PlayerActionButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "1"
+
+[node name="Button2" type="Button" parent="PlayerActionButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "2"
+
+[node name="Button3" type="Button" parent="PlayerActionButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "3"
+
+[node name="Button4" type="Button" parent="PlayerActionButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "4"
+
+[node name="Button5" type="Button" parent="PlayerActionButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "5"
+
+[node name="ChatActionButtons" type="HBoxContainer" parent="."]
+offset_left = 687.0
+offset_top = 5.0
+offset_right = 1231.0
+offset_bottom = 111.0
+size_flags_horizontal = 3
+
+[node name="Button1" type="Button" parent="ChatActionButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+text = "!1"
+
+[node name="Button2" type="Button" parent="ChatActionButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+text = "!2"
+
+[node name="Button3" type="Button" parent="ChatActionButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+text = "!3"
+
+[node name="Button4" type="Button" parent="ChatActionButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+text = "!4"
+
+[node name="Button5" type="Button" parent="ChatActionButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+disabled = true
+text = "!5"
+
+[node name="CanvasGroup" type="CanvasGroup" parent="."]
+position = Vector2(646, 0)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="CanvasGroup"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasGroup/StaticBody2D"]
+position = Vector2(313.625, 686)
+shape = SubResource("RectangleShape2D_dvehs")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="CanvasGroup"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasGroup/StaticBody2D2"]
+position = Vector2(32, 349)
+shape = SubResource("RectangleShape2D_6beg5")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="CanvasGroup"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasGroup/StaticBody2D3"]
+position = Vector2(595, 347)
+shape = SubResource("RectangleShape2D_vy5n2")
+
+[node name="CanvasGroup2" type="CanvasGroup" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="CanvasGroup2"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasGroup2/StaticBody2D"]
+position = Vector2(313.625, 686)
+shape = SubResource("RectangleShape2D_dvehs")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="CanvasGroup2"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasGroup2/StaticBody2D2"]
+position = Vector2(32, 349)
+shape = SubResource("RectangleShape2D_6beg5")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="CanvasGroup2"]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasGroup2/StaticBody2D3"]
+position = Vector2(598.25, 348.25)
+shape = SubResource("RectangleShape2D_vy5n2")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 697.0
+offset_right = 1280.0
+offset_bottom = 720.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 10
+value = 21.0
+show_percentage = false
+
+[node name="HSlider" type="HSlider" parent="."]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 514.0
+offset_top = 675.0
+offset_right = 760.0
+offset_bottom = 705.0
+grow_vertical = 2
+size_flags_vertical = 8
+min_value = 1.0
+max_value = 20.0
+value = 5.0
+rounded = true
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 613.0
+offset_top = 663.0
+offset_right = 666.0
+offset_bottom = 686.0
+text = "TIMER"
+
+[node name="PlayerEndGameArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerEndGameArea"]
+position = Vector2(314.5, 0)
+shape = SubResource("RectangleShape2D_e5j6o")
+
+[node name="JoinAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_1176a")
+
+[node name="WastedAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_yans0")
+
+[node name="PlayerWastedImage" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.815686)
+position = Vector2(315.25, 339)
+scale = Vector2(0.887755, 1.89386)
+texture = ExtResource("5_j4yfk")
+
+[node name="ChatWastedImage" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.815686)
+position = Vector2(963, 339)
+scale = Vector2(0.887755, 1.89386)
+texture = ExtResource("5_j4yfk")
+
+[connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
+[connection signal="pressed" from="PlayerActionButtons/Button1" to="." method="_on_button_1_pressed"]
+[connection signal="pressed" from="PlayerActionButtons/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="PlayerActionButtons/Button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="PlayerActionButtons/Button4" to="." method="_on_button_4_pressed"]
+[connection signal="pressed" from="PlayerActionButtons/Button5" to="." method="_on_button_5_pressed"]
+[connection signal="pressed" from="ChatActionButtons/Button1" to="." method="_on_button_1_pressed"]
+[connection signal="pressed" from="ChatActionButtons/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="ChatActionButtons/Button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="ChatActionButtons/Button4" to="." method="_on_button_4_pressed"]
+[connection signal="pressed" from="ChatActionButtons/Button5" to="." method="_on_button_5_pressed"]
+[connection signal="value_changed" from="HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="body_entered" from="PlayerEndGameArea" to="." method="_on_player_end_game_area_body_entered"]

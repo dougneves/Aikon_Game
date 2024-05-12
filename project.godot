@@ -11,8 +11,17 @@ config_version=5
 [application]
 
 config/name="Aikon_Game"
+run/main_scene="res://scenes/level.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/size/initial_position_type=3
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [rendering]
 
