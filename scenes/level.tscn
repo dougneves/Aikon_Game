@@ -1,46 +1,55 @@
-[gd_scene load_steps=10 format=3 uid="uid://d0aqstysxgj3x"]
+[gd_scene load_steps=13 format=3 uid="uid://d0aqstysxgj3x"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_kfkqp"]
 [ext_resource type="PackedScene" uid="uid://cieuq0jympjo3" path="res://scenes/emote_sprite.tscn" id="2_6qm2u"]
+[ext_resource type="Texture2D" uid="uid://mpdb8qfbyvlx" path="res://img/background.png" id="2_qm8j3"]
 [ext_resource type="AudioStream" uid="uid://n41bvm1dovdi" path="res://audio/join2.wav" id="3_1176a"]
 [ext_resource type="AudioStream" uid="uid://c4innrm2ssqsm" path="res://audio/wasted.mp3" id="4_yans0"]
+[ext_resource type="AudioStream" uid="uid://bf71ffh6heh6q" path="res://audio/background_music.mp3" id="5_14eg5"]
 [ext_resource type="Texture2D" uid="uid://c7k56dtltxlh" path="res://img/wasted.png" id="5_j4yfk"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dvehs"]
-size = Vector2(582.75, 22)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6beg5"]
-size = Vector2(20, 693)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vy5n2"]
-size = Vector2(22.5, 694.5)
+[ext_resource type="PackedScene" uid="uid://c8p1pj7dpqlu" path="res://scenes/yt_live_chat.tscn" id="8_62ope"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e5j6o"]
-size = Vector2(585, 20)
+size = Vector2(480, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dvehs"]
+size = Vector2(480, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6beg5"]
+size = Vector2(16, 512)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vy5n2"]
+size = Vector2(16, 512)
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_kfkqp")
 
+[node name="BackgroundImage" type="Sprite2D" parent="."]
+position = Vector2(639.846, 358.432)
+rotation = 1.5708
+scale = Vector2(1.32322, 1.33024)
+texture = ExtResource("2_qm8j3")
+
 [node name="GameTimer" type="Timer" parent="."]
 wait_time = 5.0
-autostart = true
 
-[node name="Label" type="Label" parent="."]
-offset_left = 612.0
+[node name="NextLabel" type="Label" parent="."]
+offset_left = 522.0
 offset_top = 161.0
-offset_right = 665.0
+offset_right = 760.0
 offset_bottom = 184.0
 text = "N E X T"
+horizontal_alignment = 1
 
 [node name="NextEmote" parent="." instance=ExtResource("2_6qm2u")]
-position = Vector2(641, 235)
+position = Vector2(640, 263)
 
 [node name="PlayerActionButtons" type="HBoxContainer" parent="."]
 z_index = 999
-offset_left = 43.0
-offset_top = 5.0
-offset_right = 587.0
-offset_bottom = 111.0
+offset_left = 58.0
+offset_top = 171.0
+offset_right = 504.0
+offset_bottom = 235.0
 size_flags_horizontal = 3
 
 [node name="Button1" type="Button" parent="PlayerActionButtons"]
@@ -69,10 +78,10 @@ size_flags_horizontal = 3
 text = "5"
 
 [node name="ChatActionButtons" type="HBoxContainer" parent="."]
-offset_left = 687.0
-offset_top = 5.0
-offset_right = 1231.0
-offset_bottom = 111.0
+offset_left = 779.0
+offset_top = 171.0
+offset_right = 1225.0
+offset_bottom = 235.0
 size_flags_horizontal = 3
 
 [node name="Button1" type="Button" parent="ChatActionButtons"]
@@ -105,57 +114,69 @@ size_flags_horizontal = 3
 disabled = true
 text = "!5"
 
-[node name="CanvasGroup" type="CanvasGroup" parent="."]
+[node name="ChatBucket" type="CanvasGroup" parent="."]
 position = Vector2(646, 0)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="CanvasGroup"]
+[node name="ChatEndGameArea" type="Area2D" parent="ChatBucket"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ChatBucket/ChatEndGameArea"]
+position = Vector2(356, 162)
+shape = SubResource("RectangleShape2D_e5j6o")
+
+[node name="ChatBucketBottom" type="StaticBody2D" parent="ChatBucket"]
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasGroup/StaticBody2D"]
-position = Vector2(313.625, 686)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ChatBucket/ChatBucketBottom"]
+position = Vector2(356, 658)
 shape = SubResource("RectangleShape2D_dvehs")
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="CanvasGroup"]
+[node name="ChatBucketLeft" type="StaticBody2D" parent="ChatBucket"]
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasGroup/StaticBody2D2"]
-position = Vector2(32, 349)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ChatBucket/ChatBucketLeft"]
+position = Vector2(124, 410)
 shape = SubResource("RectangleShape2D_6beg5")
 
-[node name="StaticBody2D3" type="StaticBody2D" parent="CanvasGroup"]
+[node name="ChatBucketRight" type="StaticBody2D" parent="ChatBucket"]
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasGroup/StaticBody2D3"]
-position = Vector2(595, 347)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ChatBucket/ChatBucketRight"]
+position = Vector2(588, 410)
 shape = SubResource("RectangleShape2D_vy5n2")
 
-[node name="CanvasGroup2" type="CanvasGroup" parent="."]
+[node name="PlayerBucket" type="CanvasGroup" parent="."]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="CanvasGroup2"]
+[node name="PlayerEndGameArea" type="Area2D" parent="PlayerBucket"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBucket/PlayerEndGameArea"]
+position = Vector2(281, 162)
+shape = SubResource("RectangleShape2D_e5j6o")
+
+[node name="PlayerBucketBottom" type="StaticBody2D" parent="PlayerBucket"]
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasGroup2/StaticBody2D"]
-position = Vector2(313.625, 686)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBucket/PlayerBucketBottom"]
+position = Vector2(281, 658)
 shape = SubResource("RectangleShape2D_dvehs")
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="CanvasGroup2"]
+[node name="PlayerBucketLeft" type="StaticBody2D" parent="PlayerBucket"]
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasGroup2/StaticBody2D2"]
-position = Vector2(32, 349)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBucket/PlayerBucketLeft"]
+position = Vector2(49, 410)
 shape = SubResource("RectangleShape2D_6beg5")
 
-[node name="StaticBody2D3" type="StaticBody2D" parent="CanvasGroup2"]
+[node name="PlayerBucketRight" type="StaticBody2D" parent="PlayerBucket"]
 collision_layer = 2
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasGroup2/StaticBody2D3"]
-position = Vector2(598.25, 348.25)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBucket/PlayerBucketRight"]
+position = Vector2(513, 410)
 shape = SubResource("RectangleShape2D_vy5n2")
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
@@ -173,32 +194,29 @@ size_flags_vertical = 10
 value = 21.0
 show_percentage = false
 
-[node name="HSlider" type="HSlider" parent="."]
+[node name="TimerSlider" type="HSlider" parent="."]
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_left = 514.0
-offset_top = 675.0
+offset_left = 524.0
+offset_top = 666.0
 offset_right = 760.0
-offset_bottom = 705.0
+offset_bottom = 696.0
 grow_vertical = 2
 size_flags_vertical = 8
 min_value = 1.0
 max_value = 20.0
 value = 5.0
 rounded = true
+editable = false
+scrollable = false
 
-[node name="Label2" type="Label" parent="."]
-offset_left = 613.0
-offset_top = 663.0
-offset_right = 666.0
-offset_bottom = 686.0
-text = "TIMER"
-
-[node name="PlayerEndGameArea" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerEndGameArea"]
-position = Vector2(314.5, 0)
-shape = SubResource("RectangleShape2D_e5j6o")
+[node name="TimerLabel" type="Label" parent="."]
+offset_left = 522.0
+offset_top = 642.0
+offset_right = 761.0
+offset_bottom = 665.0
+text = "TIMER 5s"
+horizontal_alignment = 1
 
 [node name="JoinAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_1176a")
@@ -206,19 +224,105 @@ stream = ExtResource("3_1176a")
 [node name="WastedAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_yans0")
 
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_14eg5")
+volume_db = -10.0
+autoplay = true
+
 [node name="PlayerWastedImage" type="Sprite2D" parent="."]
 visible = false
 modulate = Color(1, 1, 1, 0.815686)
-position = Vector2(315.25, 339)
-scale = Vector2(0.887755, 1.89386)
+position = Vector2(281.5, 410)
+scale = Vector2(0.755102, 1.43017)
 texture = ExtResource("5_j4yfk")
 
 [node name="ChatWastedImage" type="Sprite2D" parent="."]
 visible = false
 modulate = Color(1, 1, 1, 0.815686)
-position = Vector2(963, 339)
-scale = Vector2(0.887755, 1.89386)
+position = Vector2(1002, 410)
+scale = Vector2(0.753532, 1.43017)
 texture = ExtResource("5_j4yfk")
+
+[node name="EuPontos" type="Label" parent="."]
+offset_left = 40.0
+offset_top = 117.0
+offset_right = 524.0
+offset_bottom = 140.0
+text = "EU: 0 pontos"
+horizontal_alignment = 1
+
+[node name="VocesPontos" type="Label" parent="."]
+offset_left = 760.0
+offset_top = 120.0
+offset_right = 1238.0
+offset_bottom = 143.0
+text = "Vocês: 0 pontos"
+horizontal_alignment = 1
+
+[node name="MusicVolumeSlider" type="HSlider" parent="."]
+offset_left = 1181.0
+offset_top = 17.0
+offset_right = 1272.0
+offset_bottom = 33.0
+min_value = -80.0
+max_value = 0.0
+value = -10.0
+
+[node name="Label" type="Label" parent="MusicVolumeSlider"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = -20.0
+offset_right = 92.0
+offset_bottom = 3.0
+text = "MUSIC:"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+offset_left = 1066.0
+offset_top = 3.0
+offset_right = 1176.0
+offset_bottom = 34.0
+toggle_mode = true
+text = "FULL SCREEN"
+flat = true
+
+[node name="YTLiveChat" parent="." instance=ExtResource("8_62ope")]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_right = 303.0
+offset_bottom = 66.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ApiKeyEdit" type="LineEdit" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+placeholder_text = "Google API Key"
+max_length = 64
+secret = true
+
+[node name="LiveIdEdit" type="LineEdit" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+placeholder_text = "Live ID"
+
+[node name="StartGameButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "START"
+
+[node name="CommandsLabel" type="Label" parent="."]
+offset_left = 940.0
+offset_top = 90.0
+offset_right = 1244.0
+offset_bottom = 113.0
+text = "último voto"
+horizontal_alignment = 2
+
+[node name="AllEmotes" type="Node" parent="."]
 
 [connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
 [connection signal="pressed" from="PlayerActionButtons/Button1" to="." method="_on_button_1_pressed"]
@@ -231,5 +335,10 @@ texture = ExtResource("5_j4yfk")
 [connection signal="pressed" from="ChatActionButtons/Button3" to="." method="_on_button_3_pressed"]
 [connection signal="pressed" from="ChatActionButtons/Button4" to="." method="_on_button_4_pressed"]
 [connection signal="pressed" from="ChatActionButtons/Button5" to="." method="_on_button_5_pressed"]
-[connection signal="value_changed" from="HSlider" to="." method="_on_h_slider_value_changed"]
-[connection signal="body_entered" from="PlayerEndGameArea" to="." method="_on_player_end_game_area_body_entered"]
+[connection signal="body_entered" from="ChatBucket/ChatEndGameArea" to="." method="_on_chat_end_game_area_body_entered"]
+[connection signal="body_entered" from="PlayerBucket/PlayerEndGameArea" to="." method="_on_player_end_game_area_body_entered"]
+[connection signal="value_changed" from="TimerSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="value_changed" from="MusicVolumeSlider" to="." method="_on_music_volume_slider_value_changed"]
+[connection signal="toggled" from="Button" to="." method="_on_button_toggled"]
+[connection signal="yt_live_message_read" from="YTLiveChat" to="." method="_on_yt_live_chat_yt_live_message_read"]
+[connection signal="pressed" from="HBoxContainer/StartGameButton" to="." method="_on_button_pressed"]

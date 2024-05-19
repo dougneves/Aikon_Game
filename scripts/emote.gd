@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var type:int = 0
+@export var ownerName:String = "PLAYER"
 
 signal on_clear(e1: Node2D, e2: Node2D)
 
@@ -15,7 +16,7 @@ func set_type(new_type:int):
 	
 func _apply_type():
 	$RigidBody2D/EmoteSprite.play(str(type))
-	var bodyScale = (type+5)*0.15
+	var bodyScale = (type+3)*0.17
 	$RigidBody2D/EmoteSprite.scale = Vector2(bodyScale, bodyScale)
 	$RigidBody2D/CollisionShape2D.scale = Vector2(bodyScale, bodyScale)
 
